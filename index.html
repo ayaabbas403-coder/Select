@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#c75b83">
+<title>لمسة جمال</title>
+<style>
+:root{--pink:#c75b83;--pale:#fff0f5;--dark:#3b2630;--muted:#806b74;--white:#fff}
+*{box-sizing:border-box}body{margin:0;font-family:Tahoma,Arial,sans-serif;background:#fff8fb;color:var(--dark)}
+header{background:linear-gradient(135deg,#c75b83,#e8a1bd);color:white;padding:28px 18px 24px;border-radius:0 0 28px 28px}
+header .brand{font-size:13px;opacity:.9}h1{font-size:27px;margin:10px 0}header p{margin:0;line-height:1.8;font-size:14px}
+main{max-width:850px;margin:auto;padding:18px}.search{width:100%;padding:13px 15px;border:1px solid #f0cada;border-radius:14px;font-size:15px;background:white;outline-color:var(--pink)}
+h2{font-size:19px;margin:24px 0 12px}.chips{display:flex;gap:8px;flex-wrap:wrap}.chip{border:1px solid #efc8d8;background:white;color:var(--pink);padding:9px 13px;border-radius:22px;cursor:pointer}.chip.active{background:var(--pink);color:white}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:12px}.card{background:white;border-radius:18px;padding:14px;box-shadow:0 4px 16px #9d53630d;border:1px solid #f8e6ee}.emoji{font-size:34px;background:var(--pale);height:76px;display:grid;place-items:center;border-radius:13px}.card h3{font-size:15px;margin:11px 0 5px}.card p{font-size:12px;color:var(--muted);line-height:1.7;margin:0 0 10px}.price{color:var(--pink);font-weight:bold;font-size:13px}.btn{border:0;background:var(--pink);color:white;border-radius:11px;padding:10px 12px;cursor:pointer;font-family:inherit}.btn.secondary{background:#fce5ef;color:#9f3f65}.row{display:flex;justify-content:space-between;align-items:center;gap:8px}.panel{background:white;border-radius:18px;padding:16px;border:1px solid #f8e6ee;line-height:1.9;font-size:14px}.field{width:100%;padding:12px;border:1px solid #efcfdb;border-radius:10px;font:inherit;margin:6px 0 12px}label{font-size:13px;color:var(--muted)}.notice{font-size:12px;color:var(--muted);line-height:1.8;margin-top:14px}footer{text-align:center;padding:25px;color:var(--muted);font-size:12px}
+</style>
+</head>
+<body>
+<header><div class="brand">🌷 تطبيق العناية والجمال</div><h1>لمسة جمال</h1><p>جمالك يبدأ من عنايتك بنفسك ✨<br>اكتشفي نصائح الجمال ومنتجات العناية واحجزي موعدك.</p></header>
+<main>
+<input id="search" class="search" placeholder="🔎 ابحثي عن منتج أو نصيحة..." aria-label="بحث">
+<h2>تصفحي الأقسام</h2>
+<div class="chips" id="filters">
+<button class="chip active" data-cat="الكل">الكل</button><button class="chip" data-cat="العناية بالبشرة">العناية بالبشرة</button><button class="chip" data-cat="المكياج">المكياج</button><button class="chip" data-cat="الشعر">الشعر</button><button class="chip" data-cat="العطور">العطور</button>
+</div>
+<h2>منتجات ونصائح</h2><div class="grid" id="products"></div>
+<h2>نصائح سريعة</h2>
+<div class="panel">💧 <b>اشربي الماء:</b> حافظي على شرب الماء بانتظام حسب احتياج جسمك.<br>🧴 <b>واقي الشمس:</b> استخدمي واقي شمس مناسباً خلال النهار.<br>🫧 <b>روتين بسيط:</b> تنظيف لطيف، ترطيب، وابتعدي عن المنتجات التي تهيّج بشرتك.</div>
+<h2>احجزي موعد تجميل</h2>
+<form class="panel" id="booking">
+<label for="name">الاسم</label><input class="field" id="name" required placeholder="اكتبي اسمك">
+<label for="service">الخدمة</label><select class="field" id="service"><option>مكياج</option><option>تصفيف شعر</option><option>عناية بالبشرة</option><option>استشارة تجميل</option></select>
+<label for="date">التاريخ المناسب</label><input class="field" id="date" type="date" required>
+<label for="phone">رقم التواصل (اختياري)</label><input class="field" id="phone" class="field" placeholder="رقم الهاتف">
+<button class="btn" type="submit">حفظ طلب الحجز</button><p id="bookingMsg" role="status"></p>
+<p class="notice">هذا نموذج تجريبي يحفظ طلبات الحجز على نفس الجهاز فقط، ولا يرسلها إلى صالون.</p>
+</form>
+<h2>المفضلة ❤️</h2><div id="favorites" class="panel">لم تضيفي منتجات للمفضلة بعد.</div>
+</main>
+<footer>لمسة جمال · نموذج تجريبي مجاني للاستخدام الشخصي 🌸</footer>
+<script>
+const items=[
+ {name:"غسول لطيف",cat:"العناية بالبشرة",emoji:"🫧",desc:"اختاري غسولاً يناسب نوع بشرتك.",price:"نصيحة عناية"},
+ {name:"مرطب الوجه",cat:"العناية بالبشرة",emoji:"🧴",desc:"يساعد على دعم حاجز البشرة.",price:"نصيحة عناية"},
+ {name:"واقي الشمس",cat:"العناية بالبشرة",emoji:"☀️",desc:"اختاري حماية واسعة الطيف SPF 30+.",price:"نصيحة عناية"},
+ {name:"أحمر الشفاه",cat:"المكياج",emoji:"💄",desc:"اختاري لوناً تحبينه ومناسباً لإطلالتك.",price:"إلهام مكياج"},
+ {name:"فرش المكياج",cat:"المكياج",emoji:"🖌️",desc:"نظفي الفرش بانتظام واتركيها تجف.",price:"نصيحة مكياج"},
+ {name:"ماسكارا",cat:"المكياج",emoji:"👁️",desc:"لا تشاركي مستحضرات العين مع الآخرين.",price:"نصيحة مكياج"},
+ {name:"عناية بالشعر",cat:"الشعر",emoji:"🪮",desc:"استخدمي مشطاً مناسباً وقللي الحرارة.",price:"نصيحة شعر"},
+ {name:"قناع ترطيب الشعر",cat:"الشعر",emoji:"🧖‍♀️",desc:"اختاري منتجاً يناسب طبيعة شعرك.",price:"نصيحة شعر"},
+ {name:"عطر ناعم",cat:"العطور",emoji:"🌸",desc:"جرّبي العطر على الجلد أولاً إذا كانت بشرتك حساسة.",price:"إلهام عطور"}
+];
+let category="الكل", favorites=JSON.parse(localStorage.getItem("beautyFavs")||"[]");
+function render(){let q=document.getElementById("search").value.trim().toLowerCase();let list=items.filter(x=>(category==="الكل"||x.cat===category)&&(x.name+" "+x.cat+" "+x.desc).toLowerCase().includes(q));document.getElementById("products").innerHTML=list.map(x=>`<article class="card"><div class="emoji">${x.emoji}</div><h3>${x.name}</h3><p>${x.desc}</p><div class="row"><span class="price">${x.price}</span><button class="btn secondary" onclick="toggleFav('${x.name.replace(/'/g,"")}')">${favorites.includes(x.name)?"♥":"♡"}</button></div></article>`).join("")||"<p>ما لقينا نتيجة. جرّبي كلمة تانية.</p>";renderFavs()}
+function toggleFav(name){favorites=favorites.includes(name)?favorites.filter(x=>x!==name):[...favorites,name];localStorage.setItem("beautyFavs",JSON.stringify(favorites));render()}
+function renderFavs(){let el=document.getElementById("favorites");el.textContent=favorites.length?favorites.join("، "):"لم تضيفي منتجات للمفضلة بعد."}
+document.querySelectorAll(".chip").forEach(b=>b.addEventListener("click",()=>{document.querySelectorAll(".chip").forEach(c=>c.classList.remove("active"));b.classList.add("active");category=b.dataset.cat;render()}));
+document.getElementById("search").addEventListener("input",render);
+document.getElementById("booking").addEventListener("submit",e=>{e.preventDefault();let booking={name:document.getElementById("name").value,service:document.getElementById("service").value,date:document.getElementById("date").value,phone:document.getElementById("phone").value};let all=JSON.parse(localStorage.getItem("beautyBookings")||"[]");all.push(booking);localStorage.setItem("beautyBookings",JSON.stringify(all));document.getElementById("bookingMsg").textContent="🌷 تم حفظ طلبك على هذا الجهاز.";e.target.reset()});
+render();
+</script>
+</body>
+</html>
